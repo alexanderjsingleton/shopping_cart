@@ -9,4 +9,4 @@
 
 # Make sure your secret_key_base is kept private
 # if you're sharing your code publicly.
-Blocitoff::Application.config.secret_key_base = 'ee76f8c72d4f64c4e48453881876934bcdd6ed114c3978b3e6e561a2ba1fcebeccb66982319ec7e0c1c5b6eaaf755548b0cba438121c24d1b85d3a03abffacfd'
+Blocitoff::Application.config.secret_key_base = ENV['SECRET_KEY_BASE']
