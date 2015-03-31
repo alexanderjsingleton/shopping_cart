@@ -1,10 +1,12 @@
 Blocitoff::Application.routes.draw do
-  get 'users/new'
+ devise_for :users
+  resources :users, only: [:update, :show]
 
-  devise_for :users
-  get 'welcome/index'
-  
-  get 'welcome/about'
-  
-  root to: 'welcome#index'
+  authenticated :user do
+    root to: "users#show", as: :authenticated_root, via: :get
+  end
+
+  unauthenticated do
+    root 'welcome#index'
+  end
 end
