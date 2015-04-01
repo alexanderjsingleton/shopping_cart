@@ -2,5 +2,33 @@
 
 <%= render 'form' %>
 
-<%= link_to 'Show', @order %> |
-<%= link_to 'Back', orders_path %>
+
+
+<% @order.coupons.build if @order.coupons.empty? %>
+
+<% form_for(@order) do |f| %>
+  <%= f.error_messages %>
+
+  <p>
+    <%= f.label :order_name %><br />
+    <%= f.text_field :order_name %>
+  </p>
+
+  <h2>Coupons</h2>
+  <% f.fields_for :coupons do |f2| %>
+    <p>
+      <%= f2.label :coupon_name, 'Coupon:' %>
+      <%= f2.text_field :coupon_name %>
+    </p>
+    <% unless f2.object.nil? || f2.object.new_record? %>
+      <p>
+        <%= f2.label :_delete, 'Remove:' %>
+        <%= f2.check_box :_delete %>
+      </p>
+    <% end %>
+  <% end %>
+
+  <p>
+    <%= f.submit 'Create' %>
+  </p>
+<% end %>
