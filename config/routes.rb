@@ -1,4 +1,6 @@
 Blocitoff::Application.routes.draw do
+  resources :lists
+
   get 'items/index'
 
   get 'items/show'
