@@ -3,9 +3,13 @@ Blocitoff::Application.routes.draw do
 
   get 'items/show'
 
+  get 'items/create'
+
   get 'items/new'
 
   get 'items/edit'
+
+
 
   devise_for :users
     resources :users, only: [:update, :show]

@@ -2,7 +2,20 @@ class ItemsController < ApplicationController
   def index
   end
 
-  def show
+    def show
+    end
+
+   def new
+    @list = List.find(params[:list_id])
+    @item = Item.new(item_params)
+    @item.list = @list
+
+    if @item.save
+     redirect_to list_path(@list), notice: "To-do saved."
+    else
+      flash[:error] = "Error saving To-do - please try again."
+      render :new
+    end
   end
 
   def create
